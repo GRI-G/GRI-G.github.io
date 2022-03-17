@@ -22,7 +22,6 @@ const MainContent = styled.main`
   display: flex;
   margin: 0 auto;
   padding-top: 30px;
-  margin-left: 8em;
   font-size: 1.08em;
 `; // 추후 글로벌 컴포넌트로 빼기
 
@@ -33,6 +32,7 @@ const RankingCriteriaListContainer = styled.nav`
   margin-top: 4rem;
   height: 525px;
   width: 20em;
+  margin-left: -3em;
 `;
 
 const RankingContent = styled.section`
@@ -59,7 +59,7 @@ const RankingCriteriaListRightLine = styled.div`
 
 const RankingList: React.FC = () => {
   const [criteria, setCriteria] = useState<UserRankingCriteriaType>(
-    UserRankingCriteria.contributions
+    UserRankingCriteria.contributions,
   );
   const [generationStatus, setGeneration] = useState<number>(0);
   const [ranking, setRanking] = useState<UserInform[]>([]);
@@ -72,12 +72,12 @@ const RankingList: React.FC = () => {
   };
   const updateRanking = (
     criterias: UserRankingCriteriaType,
-    generationValue: number
+    generationValue: number,
   ) => {
     getUserInformAtGraphQL(criterias, generationValue).then(
       (res: UserInform[]) => {
         setRanking(res);
-      }
+      },
     );
   };
 

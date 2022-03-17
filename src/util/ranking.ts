@@ -10,10 +10,11 @@ import {
   getRankingApiUrl,
   getUserInformCriteria,
 } from "../config/ranking";
+import { sort, sortBy } from "@fxts/core";
 
 export const getUserInformAtGraphQL: Function = async (
   criteria: UserRankingCriteriaType,
-  generationValue: number
+  generationValue: number,
 ): Promise<UserInform[]> => {
   const result: AxiosResponse = await axios({
     method: "POST",
@@ -26,8 +27,9 @@ export const getUserInformAtGraphQL: Function = async (
   if (!result.data.data.ranking) {
     return [];
   }
-  return result.data.data.ranking.sort((a: any, b: any) =>
-    a[criteria] < b[criteria] ? 1 : -1
+  return sort(
+    (a, b) => (a[criteria] < b[criteria] ? 1 : -1),
+    result.data.data.ranking,
   );
 };
 
@@ -42,5 +44,5 @@ export const getGenerationsInformAtGraphQL: Function = async (): Promise<
       variables: {},
     },
   });
-  return result.data.data.generations ?? [];
+  return sortBy((a) => a._id, result.data.data.generations || []);
 };
