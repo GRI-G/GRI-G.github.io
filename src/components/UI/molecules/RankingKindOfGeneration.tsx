@@ -21,7 +21,7 @@ const GenerationListComponent = styled.li`
 `;
 
 const GenerationList: React.FC<GenerationListProps> = (
-  props: GenerationListProps
+  props: GenerationListProps,
 ) => {
   const [generationList, setGenerationList] = useState<
     GenerationsListAndCount[]
@@ -29,7 +29,8 @@ const GenerationList: React.FC<GenerationListProps> = (
 
   function renderGenerationList() {
     getGenerationsInformAtGraphQL().then((res: GenerationsListAndCount[]) => {
-      setGenerationList([{ _id: 0, count: 0 }, ...res]);
+      res.unshift({ _id: 0, count: 0 });
+      setGenerationList(res);
     });
   }
 

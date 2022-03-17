@@ -32,6 +32,7 @@ const RankingCriteriaListContainer = styled.nav`
   margin-top: 4rem;
   height: 525px;
   width: 20em;
+  margin-left: -3em;
 `;
 
 const RankingContent = styled.section`
