@@ -44,5 +44,5 @@ export const getGenerationsInformAtGraphQL: Function = async (): Promise<
       variables: {},
     },
   });
-  return sortBy((a) => a._id, result.data.data.generations || []);
+  return sortBy((a) => a._id, result.data.data.generation || []);
 };
