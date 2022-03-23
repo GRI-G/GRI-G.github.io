@@ -32,7 +32,7 @@ export const getUserInformCriteria: Function = (
 
 export const getGraphQLGenerationQuery: Function = () => `
 query getGenerationListQuery{
-  generations{
+  generation{
     _id
     count
   }
