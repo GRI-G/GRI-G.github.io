@@ -10,7 +10,6 @@ import {
   getRankingApiUrl,
   getUserInformCriteria,
 } from "../config/ranking";
-import { sort, sortBy } from "@fxts/core";
 
 export const getUserInformAtGraphQL: Function = async (
   criteria: UserRankingCriteriaType,
@@ -27,10 +26,7 @@ export const getUserInformAtGraphQL: Function = async (
   if (!result.data.data.ranking) {
     return [];
   }
-  return sort(
-    (a, b) => (a[criteria] < b[criteria] ? 1 : -1),
-    result.data.data.ranking,
-  );
+  return result.data.data.ranking;
 };
 
 export const getGenerationsInformAtGraphQL: Function = async (): Promise<
@@ -44,5 +40,5 @@ export const getGenerationsInformAtGraphQL: Function = async (): Promise<
       variables: {},
     },
   });
-  return sortBy((a) => a._id, result.data.data.generation || []);
+  return result.data.data.generation;
 };
