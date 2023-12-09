@@ -1,17 +1,30 @@
-# GRIG
+# React + TypeScript + Vite
 
-[![Update](https://github.com/GRI-G/GRI-G.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/GRI-G/GRI-G.github.io/actions/workflows/main.yml)
-> https://gri-g.github.io/
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-✨GSM을 졸업한, 그리고 재학중인 사람들의 깃헙 랭킹을 표시하며 매일매일 새로 정보가 업데이트 됩니다.✨
+Currently, two official plugins are available:
 
-단, 직접 등록하셔야만하며 학교이메일을 통한 인증절차가 필요합니다.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
 ```
-스타는 큰 힘이 됩니다!
-```
 
-## 제작동기
-깃헙의 다양한 요소들로 랭킹을 세워봄으로써, 학생들이 깃헙에 더 관심을 갖도록 하기위해 제작되었습니다.
-GSM을 거쳤거나, 재학 중인 사람들의 각 요소별 깃헙 랭킹을 표시합니다.
-피드백 요청이나 버그 제보는 <a href="https://github.com/GRI-G/GRI-G.github.io/issues/new">여기</a>로 이슈를 남기거나, <a href="https://github.com/GRI-G">해당 사이트 소유자</a>에게 연락 부탁드립니다.<br>만약 랭킹에 등록하고싶으시다면 <a href="https://github.com/login/oauth/authorize?client_id=685ffb52e4dd768b3f66&amp;redirect_uri=https://d6ui2fy5uj.execute-api.ap-northeast-2.amazonaws.com/api/auth&amp;scope=user:email">여기</a>를 눌러주세요!!
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
