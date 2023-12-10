@@ -3,7 +3,7 @@ import { GraphQLVariables } from "../type/user";
 export const getRankingApiUrl: string =
   "https://d6ui2fy5uj.execute-api.ap-northeast-2.amazonaws.com/api/graphql";
 
-export const getGraphQLRankingQuery: Function = (criteria: string) => `
+export const getGraphQLRankingQuery = (criteria: string) => `
 query getUserRankingQuery($rankingCriteria: String, $rankingPage: Int, $rankingCount: Int, $generation: Int) {
   ranking(criteria: $rankingCriteria, page: $rankingPage, count: $rankingCount, generation : $generation){
       name
@@ -18,7 +18,7 @@ query getUserRankingQuery($rankingCriteria: String, $rankingPage: Int, $rankingC
 
 `;
 
-export const getUserInformCriteria: Function = (
+export const getUserInformCriteria = (
   criteria: string,
   generation: number
 ): GraphQLVariables => {
@@ -30,7 +30,7 @@ export const getUserInformCriteria: Function = (
   };
 };
 
-export const getGraphQLGenerationQuery: Function = () => `
+export const getGraphQLGenerationQuery = () => `
 query getGenerationListQuery{
   generation{
     _id
